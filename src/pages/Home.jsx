@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   FaDesktop,
   FaGlobe,
@@ -21,6 +21,14 @@ const Home = () => {
   const [category, setCategory] = useState("Fashion");
   const [currency, setCurrency] = useState("BDT (Taka)");
   const [email, setEmail] = useState("");
+   const formRef = useRef(null);
+
+  // Scroll handler
+  const scrollToForm = () => {
+    if (formRef.current) {
+      formRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const [error, setError] = useState(""); // for domain error only
   const navigate = useNavigate();
@@ -100,11 +108,11 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-white flex flex-col items-center gap-16">
       {/* Title Section */}
-      {/* <div className="w-full ">
+      <div className="w-full ">
         <TitleSection />
-      </div> */}
+      </div>
        <div className="w-full mt-0">
-        <CallToActionSection />
+        <CallToActionSection onClick={scrollToForm} />
       </div>
 
       {/* Banner Section */}
@@ -113,7 +121,7 @@ const Home = () => {
       </div> */}
 
       {/* Store Creation Form Section */}
-      <div className="w-full max-w-3xl bg-gray-50 rounded-md shadow-xl p-6 sm:p-8">
+      <div ref={formRef} className="w-full max-w-3xl bg-gray-50 rounded-md shadow-xl p-6 sm:p-8  ">
         <h2 className="text-lg font-semibold mb-4">Create a store</h2>
         <p className="text-sm mb-6 text-gray-600">
           Add your basic store information and complete the setup
