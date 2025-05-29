@@ -5,7 +5,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <div
-      className="group relative overflow-hidden rounded-2xl pb-[9rem] shadow-sm shadow-gray-200 bg-white"
+      className="group relative overflow-hidden rounded-2xl pb-[9rem] shadow-md shadow-gray-200 bg-white"
       style={{ "--product-info-height": "9rem", "--product-actions-height": "7.5rem" }}
     >
       {/* Product Image */}
