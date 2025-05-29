@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -11,7 +11,7 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-800">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="relative flex h-16 items-center justify-between">
+        <div className="relative flex h-20 items-center justify-between">
           {/* Mobile menu button */}
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <button
@@ -57,33 +57,38 @@ const Navbar = () => {
           </div>
 
           {/* Logo and nav links */}
+          {/* Logo and nav links */}
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
-              <Link to="/">
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                  alt="ExpressStore"
-                />
+              <Link to="/" className="text-white text-xl font-bold">
+                ExpressStore
               </Link>
             </div>
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-4">
-              {/* Menu items with your original links and names */}
-              <Link
+            {/* Centered nav links */}
+            <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-4">
+              <NavLink
                 to="/"
-                className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
-                aria-current="page"
+                className={({ isActive }) =>
+                  isActive
+                    ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                    : "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                }
               >
                 Home
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 to="/products"
-                className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                className={({ isActive }) =>
+                  isActive
+                    ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                    : "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                }
               >
                 Products
-              </Link>
+              </NavLink>
             </div>
           </div>
+
 
           {/* Notification & Profile */}
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -164,22 +169,27 @@ const Navbar = () => {
       {/* Mobile menu */}
       {mobileMenuOpen && (
         <div className="sm:hidden" id="mobile-menu">
-          <div className="space-y-1 px-2 pt-2 pb-3">
-            <Link
+          <div className="flex flex-col space-y-1 px-2 pt-2 pb-3">
+            <NavLink
               to="/"
-              className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
-              aria-current="page"
-              onClick={() => setMobileMenuOpen(false)}
+              className={({ isActive }) =>
+                isActive
+                  ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                  : "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              }
             >
               Home
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/products"
-              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-              onClick={() => setMobileMenuOpen(false)}
+              className={({ isActive }) =>
+                isActive
+                  ? "rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                  : "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              }
             >
               Products
-            </Link>
+            </NavLink>
           </div>
         </div>
       )}

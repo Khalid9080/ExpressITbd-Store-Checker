@@ -9,6 +9,10 @@ import {
 } from "react-icons/fa";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import TitleSection from "./HomeComponents.jsx/TitleSection";
+import InfoSection from "./HomeComponents.jsx/InfoSection";
+import CallToActionSection from "./HomeComponents.jsx/CallToActionSection";
+import BannerSection from "./HomeComponents.jsx/BannerSection";
 
 const Home = () => {
   const [storeName, setStoreName] = useState("");
@@ -81,7 +85,6 @@ const Home = () => {
     }
   };
 
-  // Validation helpers
   const storeNameError =
     storeName.trim().length > 0 && storeName.trim().length < 3
       ? "Store name must be at least 3 characters long"
@@ -91,13 +94,26 @@ const Home = () => {
       ? "Invalid email format!"
       : "";
 
-  // Disable create store if errors exist
   const disableCreate =
     !!error || !!storeNameError || !!emailError || storeName.trim() === "" || domain.trim() === "";
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4 sm:p-6">
-      <div className="bg-white rounded-md shadow-md p-6 sm:p-8 w-full max-w-full sm:max-w-md md:max-w-lg lg:max-w-3xl">
+    <div className="min-h-screen bg-white flex flex-col items-center gap-16">
+      {/* Title Section */}
+      {/* <div className="w-full ">
+        <TitleSection />
+      </div> */}
+       <div className="w-full mt-0">
+        <CallToActionSection />
+      </div>
+
+      {/* Banner Section */}
+      {/* <div className="w-full max-w-6xl">
+        <BannerSection />
+      </div> */}
+
+      {/* Store Creation Form Section */}
+      <div className="w-full max-w-3xl bg-gray-50 rounded-md shadow-xl p-6 sm:p-8">
         <h2 className="text-lg font-semibold mb-4">Create a store</h2>
         <p className="text-sm mb-6 text-gray-600">
           Add your basic store information and complete the setup
@@ -125,7 +141,9 @@ const Home = () => {
                 placeholder="Store Name"
                 value={storeName}
                 onChange={(e) => setStoreName(e.target.value)}
-                className={`w-full rounded border p-2 text-sm ${storeNameError ? "border-red-500" : "border-gray-300"}`}
+                className={`w-full rounded border p-2 text-sm ${
+                  storeNameError ? "border-red-500" : "border-gray-300"
+                }`}
               />
               {storeNameError && (
                 <p className="text-xs text-red-500 mt-1">{storeNameError}</p>
@@ -154,7 +172,9 @@ const Home = () => {
                 value={domain}
                 onChange={(e) => setDomain(e.target.value)}
                 onBlur={checkDomain}
-                className={`w-full rounded border p-2 pr-28 text-sm ${error ? "border-red-500" : "border-gray-300"}`}
+                className={`w-full rounded border p-2 pr-28 text-sm ${
+                  error ? "border-red-500" : "border-gray-300"
+                }`}
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-600 select-none pointer-events-none">
                 .expressitbd.com
@@ -226,6 +246,7 @@ const Home = () => {
             </div>
           </div>
 
+          {/* Currency */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
             <div className="text-blue-600 min-w-[24px] flex-shrink-0">
               <FaSyncAlt size={20} />
@@ -252,7 +273,6 @@ const Home = () => {
             </div>
           </div>
 
-
           {/* Email */}
           <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
             <div className="text-blue-600 mt-1 min-w-[24px] flex-shrink-0">
@@ -273,7 +293,9 @@ const Home = () => {
                 placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`w-full rounded border p-2 text-sm ${emailError ? "border-red-500" : "border-gray-300"}`}
+                className={`w-full rounded border p-2 text-sm ${
+                  emailError ? "border-red-500" : "border-gray-300"
+                }`}
               />
               {emailError && (
                 <p className="text-xs text-red-500 mt-1 absolute left-0 -bottom-5 w-full">
@@ -284,22 +306,27 @@ const Home = () => {
           </div>
         </div>
 
-
-
         {/* Submit button */}
         <div className="flex justify-end mt-8">
           <button
             onClick={createStore}
             disabled={disableCreate}
-            className={`rounded px-4 py-2 text-sm font-semibold ${disableCreate
-              ? "bg-purple-200 text-gray-400 cursor-not-allowed"
-              : "bg-purple-600 text-white hover:bg-purple-700"
-              } transition`}
+            className={`rounded px-4 py-2 text-sm font-semibold ${
+              disableCreate
+                ? "bg-purple-200 text-gray-400 cursor-not-allowed"
+                : "bg-purple-600 text-white hover:bg-purple-700"
+            } transition`}
           >
             Create store
           </button>
         </div>
       </div>
+
+      {/* Info and CTA sections */}
+      <div className="w-full ">
+        <InfoSection />
+      </div>
+     
     </div>
   );
 };
