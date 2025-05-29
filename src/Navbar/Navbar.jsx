@@ -60,9 +60,9 @@ const Navbar = () => {
           {/* Logo and nav links */}
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
-              <Link to="/" className="text-white text-xl font-bold">
+              <h1 className="text-white text-2xl font-bold">
                 ExpressStore
-              </Link>
+              </h1>
             </div>
             {/* Centered nav links */}
             <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-4">
@@ -139,21 +139,21 @@ const Navbar = () => {
                   aria-labelledby="user-menu-button"
                 >
                   <Link
-                    to="/profile"
+                    to=""
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     role="menuitem"
                   >
                     Your Profile
                   </Link>
                   <Link
-                    to="/settings"
+                    to=""
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     role="menuitem"
                   >
                     Settings
                   </Link>
                   <Link
-                    to="/signout"
+                    to=""
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     role="menuitem"
                   >

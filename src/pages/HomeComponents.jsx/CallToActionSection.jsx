@@ -2,7 +2,7 @@ const CallToActionSection = ({ onClick }) => {
   return (
     <section className="px-6 text-black text-center">
       <h2 className="text-3xl font-bold mb-4">Ready to start your online store?</h2>
-      <p className="mb-6 max-w-xl mx-auto">
+      <p className="mb-6 max-w-xl mx-auto text-md">
         Join thousands of entrepreneurs using our platform to grow their businesses.
       </p>
       <button
