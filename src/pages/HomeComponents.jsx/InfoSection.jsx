@@ -48,7 +48,7 @@ const features = [
 
 const InfoSection = () => {
   return (
-    <section className="relative mx-auto max-w-7xl flex flex-col gap-12 px-8 pb-20 sm:px-0">
+    <section className="relative mx-auto max-w-7xl flex flex-col gap-12 px-8 pb-20 ">
       <div className="text-center">
         <h2 className="text-3xl font-extrabold text-gray-950 sm:text-4xl">
           Build Your Dream Online Store

@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import TitleSection from "./HomeComponents.jsx/TitleSection";
 import InfoSection from "./HomeComponents.jsx/InfoSection";
 import CallToActionSection from "./HomeComponents.jsx/CallToActionSection";
+import { toast } from "react-toastify";
 
 
 const Home = () => {
@@ -74,24 +75,32 @@ const Home = () => {
       alert("Invalid email format!");
       return;
     }
+
     try {
       const res = await axios.post(
         "https://interview-task-green.vercel.app/task/stores/create",
         {
           name: storeName.trim(),
-          currency: currency.split(" ")[0], // e.g. "BDT"
+          currency: currency.split(" ")[0],
           country: location,
           domain: domain.trim().toLowerCase(),
           category,
-          email: email.trim() || "any@email.com", // fallback email if empty
+          email: email.trim() || "any@email.com",
         }
       );
+
       console.log("Store created successfully:", res.data);
+
+      // ✅ Set flag before navigation
+      localStorage.setItem("storeCreated", "true");
+      sessionStorage.setItem("showSuccessToast", "true");
+
       navigate("/products");
     } catch {
-      alert("Failed to create store.");
+      toast.error("Failed to create store.");
     }
   };
+
 
   const storeNameError =
     storeName.trim().length > 0 && storeName.trim().length < 3
@@ -103,7 +112,8 @@ const Home = () => {
       : "";
 
   const disableCreate =
-    !!error || !!storeNameError || !!emailError || storeName.trim() === "" || domain.trim() === "";
+    !!error || !!storeNameError || !!emailError || storeName.trim() === "" || domain.trim() === "" || email.trim() === "";
+
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center gap-16 ">
@@ -317,9 +327,9 @@ const Home = () => {
             <button
               onClick={createStore}
               disabled={disableCreate}
-              className={`rounded px-4 py-2 text-sm font-semibold ${disableCreate
-                  ? "bg-purple-200 text-gray-400 cursor-not-allowed"
-                  : "bg-purple-600 text-white hover:bg-purple-700"
+              className={`rounded px-4 py-2 text-sm font-semibold hover:scale-105 transition-transform ${disableCreate
+                ? "bg-purple-200 text-gray-400 cursor-not-allowed"
+                : "bg-indigo-600 text-white hover:bg-purple-700"
                 } transition`}
             >
               Create store
